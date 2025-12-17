@@ -2,83 +2,53 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucky Roulette - Sound Fixed</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Lucky Roulette - Full Sound</title>
 <style>
-:root {
-  --gold: #fcc200;
-  --dark-gold: #b8860b;
-  --rim-glow: 0 0 30px rgba(252, 194, 0, 0.4);
-}
-body {
-  margin: 0; padding: 0;
-  background: radial-gradient(circle at center, #1a472a 0%, #052c1a 100%);
-  color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif;
-  display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden;
-}
-#confettiCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
-.main-container { display: flex; gap: 20px; align-items: flex-start; position: relative; z-index: 10; }
-.casino-machine {
-  width: 480px; padding: 25px; background: linear-gradient(145deg, #2a2a2a, #000);
-  border-radius: 40px; border: 8px solid #3d2b1f; box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-}
-h2 { font-size: 32px; color: var(--gold); text-align: center; letter-spacing: 4px; margin: 0 0 20px 0; }
-.player-list-box { height: 150px; background: rgba(0,0,0,0.5); border-radius: 10px; margin-bottom: 15px; overflow-y: auto; border: 1px solid #333; }
-.player-item { display: flex; align-items: center; padding: 8px 12px; border-bottom: 1px solid #222; font-size: 14px; }
-.avatar { width: 24px; height: 24px; border-radius: 50%; background: #333; margin-right: 10px; display: flex; justify-content: center; align-items: center; border: 1px solid var(--gold); }
-.roulette-rim {
-  position: relative; width: 360px; height: 360px; margin: 10px auto;
-  background: #111; border-radius: 50%; padding: 12px; border: 10px solid #2a1b0a; box-shadow: var(--rim-glow);
-}
-.led { position: absolute; width: 8px; height: 8px; background: #444; border-radius: 50%; top: 50%; left: 50%; transform-origin: 0 180px; z-index: 5; }
-.led.on { background: #fff; box-shadow: 0 0 10px #fff, 0 0 15px var(--gold); }
-canvas#wheel { border-radius: 50%; position: relative; z-index: 2; }
-.center-hub {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 65px; height: 65px; border-radius: 50%; background: radial-gradient(circle, #fcc200, #8b6508);
-  border: 4px solid #111; z-index: 50; cursor: pointer; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #000;
-}
-.pointer { position: absolute; top: -5px; left: 50%; transform: translateX(-50%); z-index: 60; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 30px solid #fff; }
-#victoryOverlay {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
-  width: 80%; background: rgba(0,0,0,0.95); border: 2px solid var(--gold); border-radius: 20px; padding: 30px 10px; z-index: 100; text-align: center; transition: 0.4s; cursor: pointer;
-}
-#victoryOverlay.active { transform: translate(-50%, -50%) scale(1); }
-.winner-name { color: #00ff99; font-size: 28px; font-weight: bold; }
-.history-panel { width: 200px; background: rgba(0,0,0,0.8); border-radius: 20px; border: 4px solid #3d2b1f; padding: 15px; height: 280px; overflow-y: auto; }
-.history-item { padding: 8px; border-bottom: 1px solid #333; text-align: center; color: #00ff99; font-size: 13px; }
-.go-btn { width: 100%; padding: 18px; background: linear-gradient(var(--gold), var(--dark-gold)); border: none; border-radius: 12px; font-weight: bold; font-size: 16px; cursor: pointer; color: #000; }
-.reset-btn { margin-top:15px; background: #444; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 12px; cursor: pointer; }
+/* CSS는 이전 모바일 최적화 버전과 동일 (가독성을 위해 핵심만 유지) */
+:root { --gold: #fcc200; --dark-gold: #b8860b; }
+body { margin: 0; padding: 10px; background: radial-gradient(circle at center, #1a472a 0%, #052c1a 100%); color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden; }
+.main-container { display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; max-width: 480px; }
+.casino-machine { width: 100%; box-sizing: border-box; padding: 20px; background: linear-gradient(145deg, #2a2a2a, #000); border-radius: 30px; border: 6px solid #3d2b1f; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+h2 { font-size: 24px; color: var(--gold); text-align: center; margin: 0 0 15px 0; }
+.roulette-rim { position: relative; width: 100%; max-width: 320px; aspect-ratio: 1/1; margin: 10px auto; background: #111; border-radius: 50%; padding: 10px; border: 8px solid #2a1b0a; box-shadow: 0 0 30px rgba(252, 194, 0, 0.4); box-sizing: border-box; }
+canvas#wheel { width: 100% !important; height: 100% !important; border-radius: 50%; }
+.center-hub { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 20%; height: 20%; border-radius: 50%; background: radial-gradient(circle, #fcc200, #8b6508); border: 3px solid #111; z-index: 50; cursor: pointer; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #000; font-size: 14px; }
+.pointer { position: absolute; top: -5px; left: 50%; transform: translateX(-50%); z-index: 60; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 25px solid #fff; }
+.history-panel { width: 100%; max-width: 320px; background: rgba(0,0,0,0.8); border-radius: 20px; border: 3px solid #3d2b1f; padding: 15px; box-sizing: border-box; }
+.go-btn { width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 10px; font-weight: bold; cursor: pointer; color: #000; font-size: 16px; }
+.player-list-box { height: 120px; background: rgba(0,0,0,0.5); border-radius: 10px; margin-bottom: 15px; overflow-y: auto; }
 </style>
 </head>
-<body>
-<canvas id="confettiCanvas"></canvas>
-<div class="main-container">
+<body onclick="unlockAudio()"> <div class="main-container">
   <div class="casino-machine">
     <h2>LUCKY ROULETTE</h2>
+    
     <div id="setupView">
-      <div style="display:flex; gap:8px; margin-bottom:15px;">
-        <input id="nameInput" style="flex:1; padding:12px; border-radius:8px; border:1px solid #444; background:#111; color:var(--gold);" placeholder="Enter Name..." onkeypress="if(event.keyCode==13) addPlayer()">
-        <button onclick="addPlayer()" style="padding:0 15px; background:var(--gold); border:none; border-radius:8px; font-weight:bold; cursor:pointer;">ADD</button>
+      <div style="display:flex; gap:5px; margin-bottom:15px;">
+        <input id="nameInput" style="flex:1; padding:10px; border-radius:8px; border:1px solid #444; background:#111; color:var(--gold);" placeholder="Name..." onkeypress="if(event.keyCode==13) addPlayer()">
+        <button onclick="addPlayer()" style="padding:0 15px; background:var(--gold); border:none; border-radius:8px; font-weight:bold;">ADD</button>
       </div>
       <div class="player-list-box" id="playerList"></div>
       <button class="go-btn" onclick="showRoulette()">PLACE YOUR BETS</button>
     </div>
+
     <div id="rouletteView" style="display:none;">
-      <div class="roulette-rim" id="rim">
+      <div class="roulette-rim">
         <div class="pointer"></div>
         <canvas id="wheel" width="360" height="360"></canvas>
         <div class="center-hub" onclick="spin()">SPIN</div>
-        <div id="victoryOverlay" onclick="this.classList.remove('active')">
-          <div class="winner-name" id="winnerDisplayText"></div>
+        <div id="victoryOverlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 90%; background: rgba(0,0,0,0.95); border: 2px solid var(--gold); border-radius: 20px; padding: 20px 5px; z-index: 100; text-align: center; transition: 0.4s; cursor: pointer;" onclick="this.style.transform='translate(-50%, -50%) scale(0)'">
+          <div id="winnerDisplayText" style="color: #00ff99; font-size: 24px; font-weight: bold;"></div>
           <div style="color:#666; font-size:10px; margin-top:10px;">TAP TO CLOSE</div>
         </div>
       </div>
-      <button class="reset-btn" onclick="hardReset()">RESET ALL</button>
+      <button style="margin-top:15px; background:#444; color:#fff; border:none; padding:10px; width:100%; border-radius:10px; cursor:pointer;" onclick="hardReset()">RESET ALL</button>
     </div>
   </div>
+
   <div class="history-panel">
-    <div style="color:var(--gold); text-align:center; font-weight:bold; margin-bottom:10px; border-bottom:1px solid var(--gold); padding-bottom:5px; font-size: 14px;">WINNER BOARD</div>
+    <div style="color:var(--gold); text-align:center; font-weight:bold; margin-bottom:10px; border-bottom:1px solid var(--gold); padding-bottom:5px;">WINNER BOARD</div>
     <div id="historyList"></div>
   </div>
 </div>
@@ -87,10 +57,10 @@ canvas#wheel { border-radius: 50%; position: relative; z-index: 2; }
 let players = [];
 let angle = 0;
 let spinning = false;
-let audioCtx;
+let audioCtx = null;
 
-// --- SOUND LOGIC ---
-function initAudio() {
+// --- 🔊 사운드 핵심 로직 (잠금 해제 강화) ---
+function unlockAudio() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
@@ -99,8 +69,8 @@ function initAudio() {
   }
 }
 
-function playSfx(freq, vol, dur) {
-  if (!audioCtx) return;
+function playTick(freq, vol, dur) {
+  if (!audioCtx || audioCtx.state !== 'running') return;
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
   osc.type = 'sine';
@@ -113,23 +83,16 @@ function playSfx(freq, vol, dur) {
   osc.stop(audioCtx.currentTime + dur);
 }
 
-// --- ROULETTE LOGIC ---
+// --- 나머지 로직 ---
 const canvas = document.getElementById("wheel");
 const ctx = canvas.getContext("2d");
-const rim = document.getElementById("rim");
-for(let i=0; i<24; i++) {
-  const led = document.createElement("div");
-  led.className = "led";
-  led.style.transform = `translate(-50%, -180px) rotate(${i * 15}deg)`;
-  rim.appendChild(led);
-}
 
 function addPlayer() {
-  initAudio(); // Initialize on first interaction
+  unlockAudio(); // 클릭할 때마다 상태 확인
   const input = document.getElementById("nameInput");
   const name = input.value.trim();
   if (name && !players.some(p => p.name.toLowerCase() === name.toLowerCase())) {
-    players.push({ name, avatar: '👤' });
+    players.push({ name });
     input.value = ""; 
     renderList();
   }
@@ -137,20 +100,16 @@ function addPlayer() {
 
 function renderList() {
   document.getElementById("playerList").innerHTML = players.map((p, i) => `
-    <div class="player-item">
-        <div class="avatar">👤</div>
-        <div style="flex:1;">${p.name}</div>
-        <span onclick="removePlayer(${i})" style="cursor:pointer; color:#ff4444;">✕</span>
+    <div style="display:flex; align-items:center; padding:8px; border-bottom:1px solid #222;">
+        <div style="flex:1;">👤 ${p.name}</div>
+        <span onclick="players.splice(${i},1); renderList();" style="color:#ff4444; cursor:pointer; font-weight:bold;">✕</span>
     </div>
   `).join('');
 }
 
-function removePlayer(i) { players.splice(i, 1); renderList(); }
-
 function showRoulette() {
   if (players.length < 2) return alert("Min 2 players!");
-  initAudio();
-  document.getElementById("victoryOverlay").classList.remove("active");
+  unlockAudio();
   document.getElementById("setupView").style.display = "none";
   document.getElementById("rouletteView").style.display = "block";
   drawWheel();
@@ -164,15 +123,13 @@ function drawWheel() {
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(angle + i * slice);
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.arc(0, 0, r, 0, slice);
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, r, 0, slice);
     ctx.fillStyle = i % 2 === 0 ? "#111" : "#c41e3a";
     ctx.fill();
     ctx.rotate(slice / 2);
     ctx.fillStyle = "#fff";
     ctx.textAlign = "right";
-    ctx.font = "bold 13px sans-serif";
+    ctx.font = "bold 15px sans-serif";
     ctx.fillText(p.name.toUpperCase(), r - 20, 5);
     ctx.restore();
   });
@@ -180,10 +137,8 @@ function drawWheel() {
 
 function spin() {
   if (spinning) return;
-  initAudio();
+  unlockAudio();
   spinning = true;
-  document.getElementById("victoryOverlay").classList.remove("active");
-  
   const totalRot = (15 + Math.random()*10) * Math.PI*2;
   const duration = 5000;
   const startT = performance.now();
@@ -191,14 +146,14 @@ function spin() {
 
   function anim(now) {
     const p = Math.min((now - startT) / duration, 1);
-    const ease = 1 - Math.pow(1 - p, 3);
+    const ease = 1 - Math.pow(1 - p, 4);
     angle = totalRot * ease;
     drawWheel();
 
-    // Sound Ticks
+    // 틱 소리 로직
     const currentTickIdx = Math.floor(angle / ((Math.PI*2)/players.length));
     if(currentTickIdx !== lastTickIdx) {
-      playSfx(400 + (p * 200), 0.1, 0.05);
+      playTick(400 + (p * 200), 0.1, 0.05);
       lastTickIdx = currentTickIdx;
     }
 
@@ -218,25 +173,25 @@ function finalize() {
   const winner = players[idx % players.length];
   
   document.getElementById("winnerDisplayText").innerText = "🏆 " + winner.name;
-  document.getElementById("victoryOverlay").classList.add("active");
+  document.getElementById("victoryOverlay").style.transform = "translate(-50%, -50%) scale(1)";
   
-  // Win Sound
-  playSfx(523.25, 0.2, 0.5); // C5
-  setTimeout(() => playSfx(659.25, 0.2, 0.5), 150); // E5
-  setTimeout(() => playSfx(783.99, 0.2, 0.8), 300); // G5
+  // 당첨 화음 소리
+  playTick(523, 0.2, 0.5); 
+  setTimeout(() => playTick(659, 0.2, 0.5), 150);
+  setTimeout(() => playTick(783, 0.2, 0.8), 300);
 
   const hList = document.getElementById("historyList");
   const hItem = document.createElement("div");
-  hItem.className = "history-item";
+  hItem.style.cssText = "padding:8px; border-bottom:1px solid #333; text-align:center; color:#00ff99;";
   hItem.innerHTML = `🏆 ${winner.name}`;
   hList.insertBefore(hItem, hList.firstChild);
 }
 
 function hardReset() {
-  if(!confirm("Reset everything?")) return;
+  if(!confirm("Reset?")) return;
   players = []; angle = 0;
   document.getElementById("historyList").innerHTML = "";
-  document.getElementById("victoryOverlay").classList.remove("active");
+  document.getElementById("victoryOverlay").style.transform = "translate(-50%, -50%) scale(0)";
   document.getElementById("rouletteView").style.display = "none";
   document.getElementById("setupView").style.display = "block";
   renderList();
